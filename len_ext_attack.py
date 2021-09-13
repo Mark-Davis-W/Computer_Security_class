@@ -46,7 +46,7 @@ if __name__ == '__main__':
     #calculae padding and use quote to pass url safe
     paddit = quote(padding(len_of_command*8))
     #replace the whole backend after the token and first & with new data
-    query = query.replace(q[secondPos+1:], oldCommands + paddit + newCommand)
+    query = query.replace(query[secondPos+1:], oldCommands + paddit + newCommand)
     #replace the whole query in url with newly made query 
     url = url._replace(query = query)
 
