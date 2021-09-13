@@ -22,7 +22,7 @@ if __name__ == '__main__':
         sys.exit(-1)
 
     # Get url from command line argument (argv)
-    url = sys.argv[1]
+    url = urlparse(sys.argv[1])
 
     #################################
     # Your length extension code here
