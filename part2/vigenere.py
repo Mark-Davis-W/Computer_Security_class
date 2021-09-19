@@ -78,7 +78,7 @@ def compare_let_freq(tx):
 
 
 # Run all functions
-def runner(text,x=0,y=20):
+def runner(text,x=2,y=13):
     big = 0.000001
     keySize = x
     k = x
