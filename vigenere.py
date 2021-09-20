@@ -88,7 +88,7 @@ def solve_problem(txt,n):
             counts[l] = c2
 
         # counts = nthParse(txt,i)
-        print("counts: ",counts)
+        # print("counts: ",counts)
         shifts = []
 
         for j in alphabet:
@@ -98,7 +98,7 @@ def solve_problem(txt,n):
         
         # print(key)
         key[i-1] = min(shifts, key=lambda x: x[0])[1]
-        print(key)
+        # print(key)
     best.append("".join(key))
     # best.sort(key=lambda key: compare_let_freq(decrypt(txt,key)))
     print(''.join([str(l) for l in best]))
@@ -116,22 +116,22 @@ def runner(text,x=2,y=13):
 
         average = ttl/k
         compared = 0;
-        print("Average of ({}) : {}".format(k, average))
+        # print("Average of ({}) : {}".format(k, average))
         if(average > big):
             # if(k%(keySize*1.1) < 1):
             for i in boxes:
                 compared += compare_let_freq(i)
             compared /= k
-            print("Compared: ",compared)
+            # print("Compared: ",compared)
             if(absolute < compared and absolute < 0.95):
                 big = average
                 keySize = k
                 absolute = compared
 
-        print("Big :{} and key: {}".format(big,keySize))
+        # print("Big :{} and key: {}".format(big,keySize))
 
         k += 1
-    print("About to solve: ",text)
+    # print("About to solve: ",text)
     solve_problem(text,keySize)
     # k -=1
     # print("k: ",k)
