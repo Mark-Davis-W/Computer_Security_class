@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-from os import sep
+from os import P_OVERLAY, sep
 import sys
-from collections import Counter, deque
+from collections import Counter, deque, OrderedDict
 
 #taken from Wikipedia
 letter_freqs = {
@@ -15,33 +15,61 @@ letter_freqs = {
 
 alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+mapped = {
+    'A':  0, 'B':  1, 'C':  2, 'D':  3, 'E':  4, 'F':  5, 'G':  6, 'H':  7, 'I':  8,
+    'J':  9, 'K': 10, 'L': 11, 'M': 12, 'N': 13, 'O': 14, 'P': 15, 'Q': 16, 'R': 17,
+    'S': 18, 'T': 19, 'U': 20, 'V': 21, 'W': 22, 'X': 23, 'Y': 24, 'Z': 25
+}
 
 def pop_var(s):
     """Calculate the population variance of letter frequencies in given string."""
     freqs = Counter(s)
+    # print("freqs: ",freqs)
     mean = sum(float(v)/len(s) for v in freqs.values())/len(freqs)  
     return sum((float(freqs[c])/len(s)-mean)**2 for c in freqs)/len(freqs)
 
 
 def encrypt(plaintext, key):
-    key_length = len(key)
-    key_as_int = [ord(i) for i in key]
+    # key_length = len(key)
+    newkey = (key * (len(plaintext)))[:len(plaintext)].upper()
+    print(newkey,plaintext,len(plaintext),len(newkey), end='')
+    key_as_int = [ord(i) for i in newkey]
     plaintext_int = [ord(i) for i in plaintext]
     ciphertext = ''
-    for i in range(len(plaintext_int)):
-        value = (plaintext_int[i] + key_as_int[i % key_length]) % 26
-        ciphertext += chr(value + 65)
-    return ciphertext
 
+    for i in range(len(plaintext_int)):
+        shift = key_as_int[i] - 65
+        value = (plaintext_int[i] - 65 + shift) % 26
+        # print(value,chr(value +65))
+        ciphertext += chr(value + 65)
+        
+    ciphertext.replace(" ", "").replace("\n",'')
+    # print(ciphertext)
+    return str(ciphertext)
+
+# def shift_check(ciphertext, key):
+#     # key_length = 1
+#     # key_as_int = ord(key)
+#     ciphertext_int = [ord(i) for i in ciphertext]
+#     plaintext = ''
+#     print("CHECKING: ",key)
+#     for i in range(len(ciphertext_int)):
+#         value = (ciphertext_int[i] - key) % 26
+#         plaintext += chr(value + 65)
+#     return plaintext
 
 def decrypt(ciphertext, key):
     key_length = len(key)
     key_as_int = [ord(i) for i in key]
+    # print("key in decrypt: ",key)
     ciphertext_int = [ord(i) for i in ciphertext]
+    # print(ciphertext_int)
     plaintext = ''
     for i in range(len(ciphertext_int)):
         value = (ciphertext_int[i] - key_as_int[i % key_length]) % 26
+        # print(value)
         plaintext += chr(value + 65)
+        # print(plaintext)
     return plaintext
 
 # Take text and box size and split it into boxes
@@ -67,7 +95,7 @@ def compare_let_freq(tx):
 
     engFreq = letter_freqs.values()
 
-    text = [t for t in tx]
+    text = [t for t in tx if t in alphabet]
     # print(text)
     freq = [0] * 26
     total = float(len(text))
@@ -76,6 +104,52 @@ def compare_let_freq(tx):
     # print("compare: ",sum(abs(f / total - E) for f, E in zip(freq, engFreq)))
     return sum(abs(f / total - E) for f, E in zip(freq, engFreq))
 
+
+def solve_problem(txt,n):
+    counts = [''] * n
+    best = []
+    key = [None] * n
+
+    for i in range(1,n+1):
+        # print(i)
+        # print(txt)
+        for l in range(n):
+            c2 = ""
+            # print(l)
+            for y in range(l,int(len(txt)/2),7):
+                # print("y: ",y)
+                if(y < len(txt)):
+                    c2 += txt[y]
+            counts[l] = c2
+
+        # counts = nthParse(txt,i)
+        print("counts: ",counts)
+        shifts = []
+
+        for j in alphabet:
+            shifts.append((compare_let_freq(decrypt(counts[i-1],j)),j))
+            # print(shifts)
+            # print(j)
+        
+        # print(key)
+        key[i-1] = min(shifts, key=lambda x: x[0])[1]
+        print(key)
+    best.append("".join(key))
+    # best.sort(key=lambda key: compare_let_freq(decrypt(txt,key)))
+    print(''.join([str(l) for l in best]))
+
+            
+    
+
+# def selected(tx):
+#     # if (len(tx) == 1):
+#     # print(len(tx))
+#     # print(tx)
+
+#     return "".join([k for k,v in mapped.items() if v in tx])
+
+# # def nthParse(txt,n):
+# #     return txt[::n]
 
 # Run all functions
 def runner(text,x=2,y=13):
@@ -97,15 +171,16 @@ def runner(text,x=2,y=13):
                 compared += compare_let_freq(i)
             compared /= k
             print("Compared: ",compared)
-            if(absolute < compared and 1.05 > absolute < 0.95):
+            if(absolute < compared and absolute < 0.95):
                 big = average
                 keySize = k
                 absolute = compared
-            print()
 
         print("Big :{} and key: {}".format(big,keySize))
 
         k += 1
+    print("About to solve: ",text)
+    solve_problem(text,keySize)
     # k -=1
     # print("k: ",k)
     
@@ -119,14 +194,17 @@ if __name__ == "__main__":
 
     # for me to read in file instead 
     cipher = open(sys.argv[1], 'r').read().replace("\n", "").replace(" ", "").upper()
-    # print(cipher)
+    print(len(cipher))
     # print("\nPop variance: ",pop_var(cipher))
-    en = encrypt(cipher, "keywor")
+    # keywordshere = 11,5,24,15,18,4,19,8,5,18,5
+    en = encrypt(cipher, "clothes")
+    print("\n",en)
     # print("\n", en,end='',sep='',flush=True)
     # print("\n",decrypt(en,"keyword"),end='',sep='',flush=True)
     # sys.stdout.write(en)
 
     runner(en,2,13)
+    # print(compare_let_freq(cipher))
     # keySize = 6
     
 
