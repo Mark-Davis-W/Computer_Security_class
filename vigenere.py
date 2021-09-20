@@ -21,8 +21,120 @@ def pop_var(s):
     mean = sum(float(v)/len(s) for v in freqs.values())/len(freqs)  
     return sum((float(freqs[c])/len(s)-mean)**2 for c in freqs)/len(freqs)
 
+def decrypt(ciphertext, key):
+    key_length = len(key)
+    key_as_int = [ord(i) for i in key]
+    # print("key in decrypt: ",key)
+    ciphertext_int = [ord(i) for i in ciphertext]
+    # print(ciphertext_int)
+    plaintext = ''
+    for i in range(len(ciphertext_int)):
+        value = (ciphertext_int[i] - key_as_int[i % key_length]) % 26
+        # print(value)
+        plaintext += chr(value + 65)
+        # print(plaintext)
+    return plaintext
+
+def split(text, x):
+    boxes = ['' for i in range(x)]
+    for i in range(len(text)):
+        boxes[i%x] = boxes[i%x] + text[i]
+    return boxes
 
 
+def freqSum(boxes):
+    frq = [0.0 for x in range(len(boxes))]
+    freqS = 0
+    for i in range(len(boxes)):
+        frq[i] = pop_var(boxes[i])
+    for f in frq:
+        freqS += f
+    return freqS
+
+
+def compare_let_freq(tx):
+
+    # Compare the letter distribution of the given text with normal English. Lower is closer.
+    # Performs a simple sum of absolute difference for each letter
+
+    engFreq = letter_freqs.values()
+
+    text = [t for t in tx if t in alphabet]
+    # print(text)
+    freq = [0] * 26
+    total = float(len(text))
+    for l in text:
+        freq[ord(l) - ord('A')] += 1
+    # print("compare: ",sum(abs(f / total - E) for f, E in zip(freq, engFreq)))
+    return sum(abs(f / total - E) for f, E in zip(freq, engFreq))
+
+
+
+def solve_problem(txt,n):
+    counts = [''] * n
+    best = []
+    key = [None] * n
+
+    for i in range(1,n+1):
+        # print(i)
+        # print(txt)
+        for l in range(n):
+            c2 = ""
+            # print(l)
+            for y in range(l,int(len(txt)/2),7):
+                # print("y: ",y)
+                if(y < len(txt)):
+                    c2 += txt[y]
+            counts[l] = c2
+
+        # counts = nthParse(txt,i)
+        print("counts: ",counts)
+        shifts = []
+
+        for j in alphabet:
+            shifts.append((compare_let_freq(decrypt(counts[i-1],j)),j))
+            # print(shifts)
+            # print(j)
+        
+        # print(key)
+        key[i-1] = min(shifts, key=lambda x: x[0])[1]
+        print(key)
+    best.append("".join(key))
+    # best.sort(key=lambda key: compare_let_freq(decrypt(txt,key)))
+    print(''.join([str(l) for l in best]))
+
+
+def runner(text,x=2,y=13):
+    big = 0.000001
+    keySize = x
+    k = x
+    absolute = 0
+
+    while(k < y+1):
+        boxes = split(text,k)
+        ttl = freqSum(boxes)
+
+        average = ttl/k
+        compared = 0;
+        print("Average of ({}) : {}".format(k, average))
+        if(average > big):
+            # if(k%(keySize*1.1) < 1):
+            for i in boxes:
+                compared += compare_let_freq(i)
+            compared /= k
+            print("Compared: ",compared)
+            if(absolute < compared and absolute < 0.95):
+                big = average
+                keySize = k
+                absolute = compared
+
+        print("Big :{} and key: {}".format(big,keySize))
+
+        k += 1
+    print("About to solve: ",text)
+    solve_problem(text,keySize)
+    # k -=1
+    # print("k: ",k)
 
 
 
@@ -33,3 +145,5 @@ if __name__ == "__main__":
 
     #################################################################
     # Your code to determine the key and decrypt the ciphertext here
+
+    runner(cipher,2,13)
