@@ -8,7 +8,7 @@
       "output": "^<h1>Login successful!.*",
       "comparison": "regex",
       "timeout": 1,
-      "points": null
+      "points": 15
     },
     {
       "name": "sql1",
@@ -18,7 +18,7 @@
       "output": "^<h1>Login successful!.*",
       "comparison": "regex",
       "timeout": 1,
-      "points": null
+      "points": 15
     },
     {
       "name": "sql2",
@@ -28,7 +28,7 @@
       "output": "^<h1>Login successful!.*",
       "comparison": "regex",
       "timeout": 1,
-      "points": null
+      "points": 20
     },
     {
       "name": "csrf0",
@@ -38,7 +38,7 @@
       "output": "[(5, '')]",
       "comparison": "included",
       "timeout": 2,
-      "points": null
+      "points": 25
     },
     {
       "name": "csrf1",
@@ -48,7 +48,7 @@
       "output": "[(5, '')]",
       "comparison": "included",
       "timeout": 2,
-      "points": null
+      "points": 25
     },
     {
       "name": "xss0",
@@ -58,7 +58,7 @@
       "output": "[(2, 'Correct')]",
       "comparison": "included",
       "timeout": 2,
-      "points": null
+      "points": 10
     },
     {
       "name": "xss1",
@@ -68,7 +68,7 @@
       "output": "[(2, 'Correct')]\r\n",
       "comparison": "included",
       "timeout": 2,
-      "points": null
+      "points": 10
     },
     {
       "name": "xss2",
@@ -78,7 +78,7 @@
       "output": "[(2, 'Correct')]",
       "comparison": "included",
       "timeout": 2,
-      "points": null
+      "points": 10
     },
     {
       "name": "xss3",
@@ -88,7 +88,7 @@
       "output": "[(2, 'Correct')]",
       "comparison": "included",
       "timeout": 2,
-      "points": null
+      "points": 10
     },
     {
       "name": "xss_payload submitted",
@@ -98,7 +98,7 @@
       "output": "0",
       "comparison": "exact",
       "timeout": 1,
-      "points": null
+      "points": 5
     },
     {
       "name": "No Repeated XSS Attacks",
@@ -108,7 +108,17 @@
       "output": "1\r\n1\r\n1\r\n1\r\n1\r\n1",
       "comparison": "included",
       "timeout": 1,
-      "points": null
+      "points": 5
+    },
+    {
+      "name": "sha256-test-scripts",
+      "setup": "",
+      "run": "sha256sum test/test-csrf.py test/test-xss.py",
+      "input": "",
+      "output": "b4938887c8a4aa6b74f5176ac8dd783a07d37862d1982de84ec214a0dfd9b129  test-csrf.py\r\n0076592644e9c84241b4a544636459fe184e4ad4a1902b637d0142e62a8a7fe7  test-xss.py",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
     }
   ]
 }
