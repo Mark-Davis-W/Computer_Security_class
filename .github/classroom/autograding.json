@@ -115,7 +115,7 @@
       "setup": "",
       "run": "sha256sum test/test-csrf.py test/test-xss.py",
       "input": "",
-      "output": "2d8b0164f3d91eecae5a047c83a1af5f527d8596130d6a618e40fad2fc7fb993  test/test-csrf.py\r\n1fa81e5a264aeae7814a78535748da169cbee314e8d9ad4039a33aafe5754190  test/test-xss.py",
+      "output": "b4938887c8a4aa6b74f5176ac8dd783a07d37862d1982de84ec214a0dfd9b129  test-csrf.py\r\n0076592644e9c84241b4a544636459fe184e4ad4a1902b637d0142e62a8a7fe7  test-xss.py",
       "comparison": "included",
       "timeout": 1,
       "points": 1
