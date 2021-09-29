@@ -54,4 +54,5 @@
 Name: proj2_xtra_cr3dit
 Version: 5.7.33-0ubuntu0.18.04.1
 Tables: SECRETTABLE,foo,inject3_users
-Secret: hunter2
+Secret: from table SECRETTABLE in column secret 'hunter2'
+        from table foo in column message 'Nothing to see here, move along'
