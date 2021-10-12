@@ -93,7 +93,7 @@
     {
       "name": "xss_payload submitted",
       "setup": "",
-      "run": "cat xss_payload.html &> /dev/null; echo $?",
+      "run": "cat xss_payload.html > /dev/null; echo $?",
       "input": "",
       "output": "0",
       "comparison": "exact",
@@ -113,9 +113,9 @@
     {
       "name": "sha256-test-scripts",
       "setup": "",
-      "run": "sha256sum test/test-csrf.py test/test-xss.py",
+      "run": "sha256sum test/test-csrf.py test/test-xss.py test/chromedriver",
       "input": "",
-      "output": "b4938887c8a4aa6b74f5176ac8dd783a07d37862d1982de84ec214a0dfd9b129  test-csrf.py\r\n0076592644e9c84241b4a544636459fe184e4ad4a1902b637d0142e62a8a7fe7  test-xss.py",
+      "output": "b4938887c8a4aa6b74f5176ac8dd783a07d37862d1982de84ec214a0dfd9b129  test/test-csrf.py\r\n0076592644e9c84241b4a544636459fe184e4ad4a1902b637d0142e62a8a7fe7  test/test-xss.py\r\nec3cd5ed191a1ba3bb56f15803f92e7fbed39bf5a25253c36f83f7f4631340c7  test/chromedriver",
       "comparison": "included",
       "timeout": 1,
       "points": 1
