@@ -1,0 +1,30 @@
+GET / HTTP/1.1
+Host: freeaeskey.xyz
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+HTTP/1.1 200 OK
+Server: nginx/1.14.0 (Ubuntu)
+Date: Wed, 27 Oct 2021 20:19:21 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Content-Encoding: gzip
+
+<html>
+<head>
+  <title>Free AES Key Generator!</title>
+</head>
+<body>
+<h1 style="margin-bottom: 0px">Free AES Key Generator!</h1>
+<span style="font-size: 5%">Definitely not run by the NSA.</span><br/>
+<br/>
+<br/>
+Your <i>free</i> AES-256 key: <b>9467dfe31a9072035a8379694e5320f6e7696412225b2e1c7030e4753d45e317</b><br/>
+</body>
+</html>
+
