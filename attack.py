@@ -11,7 +11,10 @@ def inject_pkt(pkt):
 # edit this function to do your attack
 ###
 def handle_pkt(pkt):
-    pass
+    if "freeaeskey.xyz" in str(pkt):
+        # store current packet as variable
+        curr_pkt = Ether(pkt)
+        print("found!")
 
 def main():
     s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, 0x0300)
