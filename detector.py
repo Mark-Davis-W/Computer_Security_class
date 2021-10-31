@@ -6,8 +6,9 @@ import sys
 
 # Complete this function!
 def process_pcap(pcap_fname):
+    # dict for storing poss offenders
     norm_list = {}
-    # rtrn_list = []
+
     for pkt in PcapReader(pcap_fname):
         # Your code here
         if not pkt.haslayer(TCP):
