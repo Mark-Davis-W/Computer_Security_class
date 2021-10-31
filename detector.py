@@ -11,11 +11,11 @@ def process_pcap(pcap_fname):
             if pkt.haslayer(IP):
                 if pkt.haslayer(TCP):
                     # check for 'SYN' packets
-                    if pkt[TCP].flags == 'S':
+                    # if pkt[TCP].flags == 'S':
                         # store source ip of SYN packet 
-                        ip_addr = pkt[IP].src
+                        # ip_addr = pkt[IP].src
                         # print("SYN packet found..........: " + ip_addr)
-                        print(ip_addr)
+                        # print(ip_addr)
 
                     # check for 'SYN+ACK' packets
                     if pkt[TCP].flags == 'SA': 
