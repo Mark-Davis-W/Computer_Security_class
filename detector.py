@@ -6,34 +6,42 @@ import sys
 
 # Complete this function!
 def process_pcap(pcap_fname):
-    norm_list = []
-    rtrn_list = []
+    norm_list = {}
+    # rtrn_list = []
     for pkt in PcapReader(pcap_fname):
         # Your code here
-        if pkt.haslayer(TCP):
-            if pkt.haslayer(IP):
-                if pkt.haslayer(Ether):
-                    # check for 'SYN' packets
-                    if pkt[TCP].flags == 'S':
-                        # store source ip of SYN packet 
-                        ip_addr = pkt[IP].src
-                        norm_list.append(ip_addr)
-                        # print("SYN packet found..........: " + ip_addr)
-                        # print(ip_addr)
+        if not pkt.haslayer(TCP):
+            continue
+        if not pkt.haslayer(IP):
+            continue
+        if not pkt.haslayer(Ether):
+            continue
+        # check for 'SYN' packets
+        if pkt[TCP].flags == 'S':
+            # store source ip of SYN packet 
+            ip_addr = pkt[IP].src
+            if ip_addr not in norm_list: norm_list[ip_addr] = {'SYN':0,'SYN-ACK':0}
+            norm_list[ip_addr]['SYN'] += 1
 
-                    # check for 'SYN+ACK' packets
-                    if pkt[TCP].flags == 'SA': 
-                        # store source ip of 'SYN+ACK' packet 
-                        ip_addr = pkt[IP].dst
-                        rtrn_list.append(ip_addr)
-                        # print("SYN+ACK packet found......: " + ip_addr)
-                        # if ip_addr in ['128.3.23.2','128.3.23.5','128.3.23.117','128.3.23.158','128.3.164.248','128.3.164.249']:
-                        # print(ip_addr)
-    norm_list = Counter(norm_list)
-    rtrn_list = Counter(rtrn_list)
-    final = [key for key,count in norm_list.items() if key in rtrn_list and count > (3*rtrn_list[key])]
-    print(*final, sep="\n")
-    # sus_list = []
+        # check for 'SYN+ACK' packets
+        if pkt[TCP].flags == 'SA': 
+            # store source ip of 'SYN+ACK' packet 
+            ip_addr = pkt[IP].dst
+            if ip_addr not in norm_list: norm_list[ip_addr] = {'SYN':0,'SYN-ACK':0}
+            norm_list[ip_addr]['SYN-ACK'] += 1
+
+    for s in sorted(norm_list.keys()):
+        if norm_list[s]['SYN'] < (norm_list[s]['SYN-ACK'] * 3):
+            del norm_list[s]
+
+    # Debugging checking output
+    # with open('norm_list.txt','w') as f:
+    #     for key,value in norm_list.items():
+    #         print(key,value,sep=" : ",file=f)
+    # f.close()
+
+    for key,value in norm_list.items():
+        print(key)
 
 
 if __name__=='__main__':
