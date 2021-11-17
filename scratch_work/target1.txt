@@ -6,7 +6,6 @@ Breakpoint 2 at 0x8049da5
 Breakpoint 1, 0x08049e09 in vulnerable ()
 
 math 0x8049dd7 - 0x8049da5 = 32
+32/4 =16
 
 print("\x00"*50 + "0x8049da5") no no no
-
-
