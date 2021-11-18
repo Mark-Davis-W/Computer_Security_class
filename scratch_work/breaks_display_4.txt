@@ -2,4 +2,5 @@
 break _main
 break read_elements
 break read_file
+brea *0x08049da6
 source ./scratch_work/display.txt
