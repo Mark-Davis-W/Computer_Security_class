@@ -1,8 +1,12 @@
 run gdb like normal
 
+before running the program:
+
 type: source ./<(path)/filename> 
    --gdb looks in directory it was started in so if a
    --fle is in another level you have to provide path
    --for each each time
 
 enjoy a premade breakpoint/print/etc set file
+
+run program and watch it work as you debug
