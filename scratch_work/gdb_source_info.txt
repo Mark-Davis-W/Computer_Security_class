@@ -5,7 +5,7 @@ before running the program:
 type: source ./<(path)/filename> 
    --gdb looks in directory it was started in so if a
    --fle is in another level you have to provide path
-   --for each each time
+   --for each time
 
 enjoy a premade breakpoint/print/etc set file
 
