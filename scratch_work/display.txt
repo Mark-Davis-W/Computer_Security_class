@@ -1,0 +1,8 @@
+display/4i $pc
+display/2i $rsp
+display/16xw $rsp+-0x20
+display/x $rax
+display/x $rdx
+display/x $rcx
+display/x $rdi
+display/x $rsi
