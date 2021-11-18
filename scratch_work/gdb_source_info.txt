@@ -10,3 +10,6 @@ type: source ./<(path)/filename>
 enjoy a premade breakpoint/print/etc set file
 
 run program and watch it work as you debug
+
+also: show direcetories in gdb will show 
+you where it defaults looking
