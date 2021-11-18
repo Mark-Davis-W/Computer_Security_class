@@ -1,5 +1,4 @@
 
-break vulnerable
 break _main
 break read_elements
 break read_file
