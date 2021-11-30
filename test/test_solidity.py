@@ -1,18 +1,20 @@
 import etherscan
 import sys
-import hashlib
 from const import *
 
 eth = etherscan.Etherscan(API_KEY, net="ropsten")
-with open(sys.argv[1], "rb") as f:
-    byte_file = f.read()
-    with open(sys.argv[2]) as contract:
-        contract_source = contract.read()
-        res = eth.get_contract_source_code(contract_source)
-        sha256_source_code = hashlib.sha256(res[0]['SourceCode'].encode('utf-8').replace(b'\r\n', b'\n').replace(b' ', b'')).hexdigest()
-        sha256_attack_sol = hashlib.sha256(byte_file.replace(b'\r\n', b'\n').replace(b' ', b'')).hexdigest()
 
-        if(sha256_attack_sol == sha256_source_code):
+
+with open(sys.argv[1]) as f:
+    student_addr = f.read().strip()
+    if len(student_addr) == 0:
+        print("no address provided")
+    else:
+        res = eth.get_internal_txs_by_address(CONTRACT, 10308757, 'latest', 'asc')
+        to_contract = list(filter(lambda x: x['to'] == CONTRACT.lower(), res))
+        from_contract = list(filter(lambda x: x['from'] == CONTRACT.lower(), res))
+
+        if len(to_contract) > 0 and len(from_contract) > 0:
             print("passed")
         else:
-            print("source code of contract at " + contract_source + "and attack.sol dont match")
+            print("no contract interaction")
