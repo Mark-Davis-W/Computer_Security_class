@@ -1,20 +1,28 @@
 import etherscan
 import sys
+import hashlib
 from const import *
 
+def normalize(b):
+    return b.replace(b'\r\n', b'\n').replace(b' ', b'').strip() #.replace(b'\n', b'') ?
+
 eth = etherscan.Etherscan(API_KEY, net="ropsten")
+with open(sys.argv[1], "rb") as f:
+    byte_file = f.read()
+    with open(sys.argv[2]) as contract:
+        contract_source = contract.read().strip()
+        res = eth.get_contract_source_code(contract_source)
 
+        remix_source = normalize(res[0]['SourceCode'].encode('utf-8'))
+        provided_source = normalize(byte_file)
 
-with open(sys.argv[1]) as f:
-    student_addr = f.read().strip()
-    if len(student_addr) == 0:
-        print("no address provided")
-    else:
-        res = eth.get_internal_txs_by_address(CONTRACT, 10308757, 'latest', 'asc')
-        to_contract = list(filter(lambda x: x['to'] == CONTRACT.lower(), res))
-        from_contract = list(filter(lambda x: x['from'] == CONTRACT.lower(), res))
+        remix_hash = hashlib.sha256(remix_source).hexdigest()
+        provided_hash = hashlib.sha256(provided_source).hexdigest()
 
-        if len(to_contract) > 0 and len(from_contract) > 0:
+        if(remix_hash == provided_hash):
             print("passed")
         else:
-            print("no contract interaction")
+            print("source code of contract at " + contract_source + "and attack.sol dont match")
+            print('Remix: (%s)\n%s' % (remix_hash, remix_source))
+            print('==============================')
+            print('attack.sol: (%s)\n%s' % (provided_hash, provided_source))
