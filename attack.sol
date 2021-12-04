@@ -1,5 +1,5 @@
 pragma solidity ^0.6.0;
-
+//
 // This contract is vulnerable to having its funds stolen.
 // Written for ECEN 4133 at the University of Colorado Boulder: https://ecen4133.org/
 // (Adapted from ECEN 5033 w19)
