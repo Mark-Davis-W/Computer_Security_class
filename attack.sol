@@ -13,22 +13,6 @@ contract Vuln {
         // Increment their balance with whatever they pay
         balances[msg.sender] += msg.value;
     }
-    function withdraw() public {
-        // Refund their balance
-        msg.sender.call.value(balances[msg.sender])("");
-        // Set their balance to 0
-        balances[msg.sender] = 0;
-    }
-}
-
-}
-
-contract Vuln {
-    mapping(address => uint256) public balances;
-    function deposit() public payable {
-        // Increment their balance with whatever they pay
-        balances[msg.sender] += msg.value;
-    }
 
     function withdraw() public {
         // Refund their balance
