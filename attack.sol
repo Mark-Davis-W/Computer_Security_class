@@ -40,6 +40,6 @@ contract attack
         {
             count += 1;
             vuln_cont.withdraw();
-       }
+        }
     }
 }
