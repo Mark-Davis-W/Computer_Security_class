@@ -23,7 +23,7 @@ contract Vuln {
 }
 
 contract attack {
-    address vuln_addr = 0x36A540E3A78084962B75E25877CfACf8846Be018
+    address vuln_addr = 0x36A540E3A78084962B75E25877CfACf8846Be01o8;
     Vuln vuln_cont = Vuln(vuln_addr);
     uint256 count = 0;
 
