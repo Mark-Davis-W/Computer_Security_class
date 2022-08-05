@@ -1,0 +1,17 @@
+1. What is the population variance of the relative letter frequencies in English text?
+
+2. What is the population variance of the relative letter frequencies in the given plaintext?
+
+3. For each of the following keys — yz, xyz, wxyz, vwxyz, uvwxyz — encrypt the plaintext with
+a Vigenère cipher and the given key, then calculate the population variance of the relative
+letter frequencies in the resulting ciphertext.
+
+4. Viewing a Vigenère key of length k as a collection of k independent Caesar ciphers, calculate
+the mean of the frequency variances of the ciphertext for each one. (E.g., for key yz, calculate
+the frequency variance of the even numbered ciphertext characters and the frequency variance
+of the odd numbered ciphertext characters. Then take their mean.)
+
+5. Consider the ciphertext that was produced with key uvwxyz. Let’s assume you are trying to
+figure out the length of the key used to encrypt that ciphertext. Calculate the mean of the
+frequency variances that arise if you assume that the key had length 2, 3, 4, and 5 (using the
+same technique you did in part (4)). How can this help you determine the length of the key?
