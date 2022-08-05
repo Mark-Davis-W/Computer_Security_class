@@ -1,0 +1,11 @@
+display/4i $pc
+display/2i $esp
+display/16xw $esp
+display/16xw $esp -48
+display/16xw $ebp
+display/x $eax
+display/x $ebx
+display/x $ecx
+display/x $edx
+display/x $edi
+display/x $esi

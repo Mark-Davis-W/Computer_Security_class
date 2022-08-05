@@ -1,0 +1,156 @@
+
+
+
+
+
+3: x/16xw $esp
+0xfffee800:     0x080e8350      0x080e8350      0x0805d1dd      0x00000005
+0xfffee810:     0x080e8350      0x080e5000      0xfffee888      0x08049ea1
+0xfffee820:     0x080e8350      0xfffee830      0x0000000c      0x00000001
+0xfffee830:     0x99580b6a      0x2f2f6852      0x2f686873      0x896e6962
+
+
+0x08049eaa in read_file ()
+1: x/4i $pc
+=> 0x8049eaa <read_file+254>:   leave  
+   0x8049eab <read_file+255>:   ret    
+   0x8049eac <_main>:   endbr32 
+   0x8049eb0 <_main+4>: push   %ebp
+2: x/2i $esp
+   0xfffee830:  push   $0xb
+   0xfffee832:  pop    %eax
+3: x/16xw $esp
+0xfffee830:     0x99580b6a      0x2f2f6852      0x2f686873      0x896e6962
+0xfffee840:     0x895352e3      0x0880cde1      0x00000001      0x080e5000
+0xfffee850:     0xffffcd90      0x080e5000      0xfffee888      0x08049e11
+0xfffee860:     0xfffee874      0x00000004      0x00000001      0x080e8350
+
+
+0x08049dab in read_elements ()
+1: x/4i $pc
+=> 0x8049dab <read_elements+86>:        ret    
+   0x8049dac <read_file>:       endbr32 
+   0x8049db0 <read_file+4>:     push   %ebp
+   0x8049db1 <read_file+5>:     mov    %esp,%ebp
+2: x/2i $esp
+   0xfffee84c:  mov    0x5008049e,%eax
+   0xfffee851:  orl    $0x8,(%esi)
+3: x/16xw $esp
+0xfffee84c:     0x08049ea1      0x080e8350      0xfffee860      0xffffffff
+0xfffee85c:     0x08049e11      0x99580b6a      0x2f2f6852      0x2f686873
+0xfffee86c:     0x896e6962      0x895352e3      0x9080cde1      0x90909090
+0xfffee87c:     0x90909090      0x90909090      0x90909090      0x90909090
+4: x/16xw $esp -48
+0xfffee81c:     0x08049d90      0xfffee890      0x00000004      0x00000001
+0xfffee82c:     0x080e8350      0x080e5000      0xffffcd90      0x080e5000
+0xfffee83c:     0x0000000c      0xffffd07c      0x080e5000      0xfffee888
+0xfffee84c:     0x08049ea1      0x080e8350      0xfffee860      0xffffffff
+5: x/16xw $ebp
+0xfffee888:     0x90909090      0xfffee860      0xffffd07c      0x00000000
+0xfffee898:     0x00000000      0x08049ebc      0x00000000      0x080e5000
+0xfffee8a8:     0xffffcd78      0x0804a063      0x00000002      0xffffce44
+0xfffee8b8:     0xffffce50      0x00000000      0x00000000      0x00000000
+6: /x $eax = 0x0
+7: /x $ebx = 0x80e5000
+8: /x $ecx = 0xfbad24a8
+9: /x $edx = 0x0
+10: /x $edi = 0x80e5000
+11: /x $esi = 0xffffcd90
+
+
+0x08049eab in read_file ()
+1: x/4i $pc
+=> 0x8049eab <read_file+255>:   ret    
+   0x8049eac <_main>:   endbr32 
+   0x8049eb0 <_main+4>: push   %ebp
+   0x8049eb1 <_main+5>: mov    %esp,%ebp
+2: x/2i $esp
+   0xfffee88c:  pusha  
+   0xfffee88d:  call   0xd07be890
+3: x/16xw $esp
+0xfffee88c:     0xfffee860      0xffffd07c      0x00000000      0x00000000
+0xfffee89c:     0x08049ebc      0x00000000      0x080e5000      0xffffcd78
+0xfffee8ac:     0x0804a063      0x00000002      0xffffce44      0xffffce50
+0xfffee8bc:     0x00000000      0x00000000      0x00000000      0x00000000
+4: x/16xw $esp -48
+0xfffee85c:     0x08049e11      0x99580b6a      0x2f2f6852      0x2f686873
+0xfffee86c:     0x896e6962      0x895352e3      0x9080cde1      0x90909090
+0xfffee87c:     0x90909090      0x90909090      0x90909090      0x90909090
+0xfffee88c:     0xfffee860      0xffffd07c      0x00000000      0x00000000
+5: x/16xw $ebp
+0x90909090:     <error: Cannot access memory at address 0x90909090>
+6: /x $eax = 0x0
+7: /x $ebx = 0x90909090
+8: /x $ecx = 0xfbad24a8
+9: /x $edx = 0x0
+10: /x $edi = 0x80e5000
+11: /x $esi = 0xffffcd90
+(gdb) 
+
+
+
+0xfffee860 in ?? ()
+1: x/4i $pc
+=> 0xfffee860:  push   $0xb
+   0xfffee862:  pop    %eax
+   0xfffee863:  cltd   
+   0xfffee864:  push   %edx
+2: x/2i $esp
+   0xfffee890:  jl     0xfffee862
+   0xfffee892:  (bad)  
+3: x/16xw $esp
+0xfffee890:     0xffffd07c      0x00000000      0x00000000      0x08049ebc
+0xfffee8a0:     0x00000000      0x080e5000      0xffffcd78      0x0804a063
+0xfffee8b0:     0x00000002      0xffffce44      0xffffce50      0x00000000
+0xfffee8c0:     0x00000000      0x00000000      0x00000000      0x00000000
+4: x/16xw $esp -48
+0xfffee860:     0x99580b6a      0x2f2f6852      0x2f686873      0x896e6962
+0xfffee870:     0x895352e3      0x9080cde1      0x90909090      0x90909090
+0xfffee880:     0x90909090      0x90909090      0x90909090      0xfffee860
+0xfffee890:     0xffffd07c      0x00000000      0x00000000      0x08049ebc
+5: x/16xw $ebp
+0x90909090:     <error: Cannot access memory at address 0x90909090>
+6: /x $eax = 0x0
+7: /x $ebx = 0x90909090
+8: /x $ecx = 0xfbad24a8
+9: /x $edx = 0x0
+10: /x $edi = 0x80e5000
+11: /x $esi = 0xffffcd90
+
+
+0xfffee875 in ?? ()
+1: x/4i $pc
+=> 0xfffee875:  int    $0x80
+   0xfffee877:  nop
+   0xfffee878:  nop
+   0xfffee879:  nop
+2: x/2i $esp
+   0xfffee87c:  test   %ch,%al
+   0xfffee87e:  (bad)  
+3: x/16xw $esp
+0xfffee87c:     0xfffee884      0x00000000      0x6e69622f      0x68732f2f
+0xfffee88c:     0x00000000      0xffffd07c      0x00000000      0x00000000
+0xfffee89c:     0x08049ebc      0x00000000      0x080e5000      0xffffcd78
+0xfffee8ac:     0x0804a063      0x00000002      0xffffce44      0xffffce50
+4: x/16xw $esp -48
+0xfffee84c:     0x08049ea1      0x080e8350      0xfffee860      0xffffffff
+0xfffee85c:     0x08049e11      0x99580b6a      0x2f2f6852      0x2f686873
+0xfffee86c:     0x896e6962      0x895352e3      0x9080cde1      0x90909090
+0xfffee87c:     0xfffee884      0x00000000      0x6e69622f      0x68732f2f
+5: x/16xw $ebp
+0x90909090:     <error: Cannot access memory at address 0x90909090>
+6: /x $eax = 0xb
+7: /x $ebx = 0xfffee884
+8: /x $ecx = 0xfffee87c
+9: /x $edx = 0x0
+10: /x $edi = 0x80e5000
+11: /x $esi = 0xffffcd90
+(gdb) 
+process 39567 is executing new program: /usr/bin/dash
+Error in re-setting breakpoint 1: Function "_main" not defined.
+Error in re-setting breakpoint 2: Function "read_elements" not defined.
+Error in re-setting breakpoint 3: Function "read_file" not defined.
+Warning:
+Cannot insert breakpoint 4.
+Cannot access memory at address 0x8049da6
+
