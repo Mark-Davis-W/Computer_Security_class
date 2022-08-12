@@ -57,12 +57,12 @@ Consolidating all computer security class repo's.
 * Learn to apply manual and automated traffic analysis to detect security problems.
 
 ## Part 1: Network Attacks
-    In this scenario, we have gotten the target to download a python script that runs in the background and hijacks the key received by a website setup by the target to generate AES-256 keys to anyone that visits.
+* In this scenario, we have gotten the target to download a python script that runs in the background and hijacks the key received by a website setup by the target to generate AES-256 keys to anyone that visits.
 ### Extra Credit
-    Same scenario but with HTTPS.
+* Same scenario but with HTTPS.
 
 ## Part 2: Network Attacks-2
-    Write a python script and check network traffic for anomallies, possibly due to a computer trying to port scan and probe for vulnerabilities.
+* Write a python script and check network traffic for anomallies, possibly due to a computer trying to port scan and probe for vulnerabilities.
 
 ## [Project 4: Application Security](https://github.com/Mark-Davis-W/Computer_Security_class/tree/master/Project4)
 
@@ -95,4 +95,4 @@ Consolidating all computer security class repo's.
 * create a basic contract and do some basic interactions
 
 ## Part 1: Vulnerable Contracts
-    Using solidity with online IDE Remix utilize the contracts vulnerabilities to "steal" more funds than is deposited.
+* Using solidity with online IDE Remix utilize the contracts vulnerabilities to "steal" more funds than is deposited.
